@@ -17,7 +17,7 @@ export const Sidebar: React.FC<SideBarProps> = ({setPageOrder, setElements, setI
 
 	useEffect(() => {
 		setJsonText(JSON.stringify(elementsInMainContent, null, 2));
-	}, []);
+	}, [elementsInMainContent]);
 
 	useEffect(() => {
 		const jsonString = JSON.stringify(elementsInMainContent, null, 2);
