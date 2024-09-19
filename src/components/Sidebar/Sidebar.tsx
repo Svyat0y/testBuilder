@@ -15,16 +15,14 @@ export const Sidebar: React.FC<SideBarProps> = ({setPageOrder, setElements, setI
 	const [activeTab, setActiveTab] = useState<'elements' | 'json'>('elements');
 	const [jsonText, setJsonText] = useState('');
 
-	// Инициализация JSON
 	useEffect(() => {
-		setJsonText(JSON.stringify(elementsInMainContent, null, 2)); // Используем все страницы
+		setJsonText(JSON.stringify(elementsInMainContent, null, 2));
 	}, []);
 
-	// Обновление JSON при изменении элементов в MainContent
 	useEffect(() => {
 		const jsonString = JSON.stringify(elementsInMainContent, null, 2);
 		setJsonText(jsonString);
-	}, [elementsInMainContent]); // Используем все страницы
+	}, [elementsInMainContent]);
 
 	const handleJsonChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		const text = e.target.value;
@@ -34,12 +32,10 @@ export const Sidebar: React.FC<SideBarProps> = ({setPageOrder, setElements, setI
 			const parsed = JSON.parse(text);
 
 			if (typeof parsed === 'object' && parsed !== null) {
-				// Проверяем, что все страницы указаны в parsed
 				const pageKeys = Object.keys(parsed);
 
-				// Устанавливаем новые элементы и порядок страниц
 				setElements(parsed);
-				setPageOrder(pageKeys); // Обновляем порядок страниц на основе ключей из JSON
+				setPageOrder(pageKeys);
 			}
 		} catch (err) {
 			console.error('Invalid JSON:', err);
@@ -66,7 +62,6 @@ export const Sidebar: React.FC<SideBarProps> = ({setPageOrder, setElements, setI
 
 			{activeTab === 'elements' && (
 				<div className={styles.elementsList}>
-					{/* Отображаем элементы из elements.json */}
 					{elements.map((item: any) => (
 						<SidebarItem key={item.id} item={item} />
 					))}

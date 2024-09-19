@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import styles from './styels.module.scss';
+import styles from './styels.module.scss'
+import {InputField} from "../../Header/InputField/InputField";
 
 interface PreviewModalProps {
 	elements: Record<string, any>;
-	pageOrder: string[]; // Добавляем pageOrder как пропс
+	pageOrder: string[];
 	onClose: () => void;
 	isPreview: boolean;
 }
@@ -12,10 +13,8 @@ export const PreviewModal: React.FC<PreviewModalProps> = ({ isPreview, elements,
 	const [viewMode, setViewMode] = useState<'mobile' | 'desktop'>('desktop');
 	const [currentPageIndex, setCurrentPageIndex] = useState(0);
 
-	// Получаем ключ текущей страницы из pageOrder
 	const currentPageKey = pageOrder[currentPageIndex];
 
-	// Обработчики переключения страниц
 	const handleNextPage = () => {
 		if (currentPageIndex < pageOrder.length - 1) {
 			setCurrentPageIndex(currentPageIndex + 1);
@@ -25,6 +24,15 @@ export const PreviewModal: React.FC<PreviewModalProps> = ({ isPreview, elements,
 	const handlePreviousPage = () => {
 		if (currentPageIndex > 0) {
 			setCurrentPageIndex(currentPageIndex - 1);
+		}
+	};
+
+	const renderElement = (element: any) => {
+		switch (element.type) {
+			case 'Input':
+				return <InputField label={element.config.label} placeholder={element.config.placeholder} />;
+			default:
+				return null;
 		}
 	};
 
@@ -48,15 +56,9 @@ export const PreviewModal: React.FC<PreviewModalProps> = ({ isPreview, elements,
 						</div>
 						{Object.keys(elements[currentPageKey]).map((key) => {
 							const element = elements[currentPageKey][key];
-							if (element.type === 'Input') {
-								return (
-									<div key={key} className={styles.inputWrapper}>
-										<label>{element.config.label}</label>
-										<input type="text" placeholder={element.config.placeholder} />
-									</div>
-								);
-							}
-							return null;
+							return (
+								<>{renderElement(element)}</>
+							);
 						})}
 					</div>
 				)}

@@ -44,11 +44,9 @@ export const DraggableElement: React.FC<DraggableElementProps> = (
 			moveElement(dragIndex, hoverIndex);
 			item.index = hoverIndex;
 
-			// Обновляем состояние hoveredIndex для отображения анимации
 			setHoveredIndex(hoverIndex);
 		},
 		collect: (monitor) => {
-			// Сбрасываем hoveredIndex при выходе из области
 			if (!monitor.isOver()) {
 				setHoveredIndex(null);
 			}
@@ -89,9 +87,7 @@ export const DraggableElement: React.FC<DraggableElementProps> = (
 							</option>
 						))}
 				</select>
-				<span ref={dragHandleRef} className={styles.dragHandle}>
-                    &#9776;
-                </span>
+				<span ref={dragHandleRef} className={styles.dragHandle}>&#9776;</span>
 			</div>
 		</div>
 	);

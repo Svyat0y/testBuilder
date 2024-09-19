@@ -36,23 +36,21 @@ export const MainContent: React.FC<MainContentProps> = (
 		}),
 	}));
 
-	// Добавляем элемент в основную область на текущую страницу
 	const addElementToMainContent = useCallback((item: any) => {
-		const uniqueKey = `${item.label}-${Date.now()}`; // Создаем уникальный ключ
+		const uniqueKey = `${item.label}-${Date.now()}`;
 
 		setElements((prevElements) => ({
 			...prevElements,
-			[currentPageRef.current]: { // Используем текущее значение currentPage
+			[currentPageRef.current]: {
 				...prevElements[currentPageRef.current],
-				[uniqueKey]: { // Используем уникальный ключ для каждого элемента
-					type: 'Input', // Убедимся, что только "Input Field" добавляется
+				[uniqueKey]: {
+					type: 'Input',
 					config: {label: item.label, placeholder: item.placeholder},
 				},
 			},
 		}));
 	}, [setElements]);
 
-	// Удаление элемента
 	const removeElement = (key: string) => {
 		setElements((prevElements) => {
 			const updatedElements = {...prevElements};
@@ -63,21 +61,17 @@ export const MainContent: React.FC<MainContentProps> = (
 		});
 	};
 
-	// Перемещение элемента на другую страницу
 	const moveElement = (key: string, targetPage: string) => {
-		if (!targetPage || !elements[targetPage]) return; // Проверка существования целевой страницы
+		if (!targetPage || !elements[targetPage]) return;
 		setElements((prevElements) => {
-			// Создаем глубокую копию состояния, чтобы избежать мутаций
 			const updatedElements = JSON.parse(JSON.stringify(prevElements));
 
 			const elementToMove = updatedElements[currentPageRef.current][key];
 
-			if (!elementToMove) return updatedElements; // Если элемент не найден, возвращаем текущее состояние
+			if (!elementToMove) return updatedElements;
 
-			// Удаляем элемент из текущей страницы
 			delete updatedElements[currentPageRef.current][key];
 
-			// Добавляем элемент на целевую страницу
 			updatedElements[targetPage] = {
 				...updatedElements[targetPage],
 				[key]: elementToMove,
@@ -87,7 +81,6 @@ export const MainContent: React.FC<MainContentProps> = (
 		});
 	};
 
-	// Обновление настроек элемента
 	const updateElementConfig = (key: string, newConfig: any) => {
 		setElements((prevElements) => ({
 			...prevElements,
@@ -101,13 +94,11 @@ export const MainContent: React.FC<MainContentProps> = (
 		}));
 	};
 
-	// Добавление новой страницы
 	const addNewPage = () => {
-		// Определяем имя для новой страницы как следующее число
 		const newPageNumber = (Math.max(...pageOrder.map(page => parseInt(page))) + 1).toString();
 		setElements((prev) => ({
 			...prev,
-			[newPageNumber]: {}, // Добавляем новую страницу в общий объект
+			[newPageNumber]: {},
 		}));
 		setPageOrder((prevOrder) => [...prevOrder, newPageNumber]);
 		setCurrentPage(newPageNumber);
@@ -115,7 +106,7 @@ export const MainContent: React.FC<MainContentProps> = (
 
 	// Удаление страницы
 	const removePage = (pageName: string) => {
-		if (pageName === '1' || pageName !== pageOrder[pageOrder.length - 1]) return; // Нельзя удалить "1" или не последнюю страницу
+		if (pageName === '1' || pageName !== pageOrder[pageOrder.length - 1]) return;
 		setElements((prevElements) => {
 			const updatedElements = {...prevElements};
 			delete updatedElements[pageName];
@@ -123,7 +114,7 @@ export const MainContent: React.FC<MainContentProps> = (
 		});
 		setPageOrder((prevOrder) => {
 			const updatedOrder = prevOrder.filter(page => page !== pageName);
-			const newCurrentPage = updatedOrder[updatedOrder.length - 1] || '1'; // Переключаемся на последнюю страницу
+			const newCurrentPage = updatedOrder[updatedOrder.length - 1] || '1';
 			setCurrentPage(newCurrentPage);
 			return updatedOrder;
 		});
@@ -133,11 +124,9 @@ export const MainContent: React.FC<MainContentProps> = (
 		setElements((prevElements) => {
 			const currentElementsArray = Object.entries(prevElements[currentPageRef.current] || {});
 
-			// Перемещаем элементы в массиве
 			const [removed] = currentElementsArray.splice(dragIndex, 1);
 			currentElementsArray.splice(hoverIndex, 0, removed);
 
-			// Создаем новый объект с измененным порядком элементов
 			const reorderedElements = currentElementsArray.reduce((acc, [key, value]) => {
 				acc[key] = value;
 				return acc;
@@ -154,7 +143,6 @@ export const MainContent: React.FC<MainContentProps> = (
 
 	return (
 		<main className={styles.mainContent}>
-			{/* Навигация по страницам */}
 			<div className={styles.pageControls}>
 				{pageOrder.map((pageName, index) => (
 					<div key={pageName} className={styles.pageTab}>
@@ -164,7 +152,6 @@ export const MainContent: React.FC<MainContentProps> = (
 						>
 							{pageName}
 						</button>
-						{/* Кнопка удаления страницы (крестик), только для последней страницы */}
 						{pageName !== '1' && index === pageOrder.length - 1 && (
 							<button className={styles.deletePageBtn} onClick={() => removePage(pageName)}>x</button>
 						)}
@@ -173,7 +160,6 @@ export const MainContent: React.FC<MainContentProps> = (
 				<button onClick={addNewPage}>Add Page</button>
 			</div>
 
-			{/* Дроп-зона */}
 			<div
 				ref={drop}
 				style={{
