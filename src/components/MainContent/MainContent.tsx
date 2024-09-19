@@ -104,7 +104,6 @@ export const MainContent: React.FC<MainContentProps> = (
 		setCurrentPage(newPageNumber);
 	};
 
-	// Удаление страницы
 	const removePage = (pageName: string) => {
 		if (pageName === '1' || pageName !== pageOrder[pageOrder.length - 1]) return;
 		setElements((prevElements) => {

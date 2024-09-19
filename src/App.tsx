@@ -33,7 +33,7 @@ function App() {
 						setElements={setElementsInMainContent}
 						currentPage={currentPage}
 						elementsInMainContent={elementsInMainContent}
-						setIsPreview={setIsPreview} // Управляем состоянием превью
+						setIsPreview={setIsPreview}
 					/>
 				</div>
 			</div>
