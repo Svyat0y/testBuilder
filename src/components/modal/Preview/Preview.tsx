@@ -5,10 +5,10 @@ interface PreviewModalProps {
 	elements: Record<string, any>;
 	pageOrder: string[]; // Добавляем pageOrder как пропс
 	onClose: () => void;
-	isPreview: boolean
+	isPreview: boolean;
 }
 
-export const PreviewModal: React.FC<PreviewModalProps> = ({isPreview, elements, pageOrder, onClose }) => {
+export const PreviewModal: React.FC<PreviewModalProps> = ({ isPreview, elements, pageOrder, onClose }) => {
 	const [viewMode, setViewMode] = useState<'mobile' | 'desktop'>('desktop');
 	const [currentPageIndex, setCurrentPageIndex] = useState(0);
 
@@ -50,7 +50,7 @@ export const PreviewModal: React.FC<PreviewModalProps> = ({isPreview, elements, 
 							const element = elements[currentPageKey][key];
 							if (element.type === 'Input') {
 								return (
-									<div key={key}>
+									<div key={key} className={styles.inputWrapper}>
 										<label>{element.config.label}</label>
 										<input type="text" placeholder={element.config.placeholder} />
 									</div>
