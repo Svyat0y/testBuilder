@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './styels.module.scss'
-import {InputField} from "../../Header/InputField/InputField";
+import {InputField} from "../../formElements/InputField/InputField";
 
 interface PreviewModalProps {
 	elements: Record<string, any>;
