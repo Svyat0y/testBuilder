@@ -5,8 +5,8 @@
   transition: transform 0.2s ease;
 
   &.hovered {
-    border: 2px dashed #3498db; /* Подсветка области, куда можно перетащить элемент */
-    background-color: #f0f8ff; /* Светло-голубой фон для выделения */
+    border: 2px dashed #3498db;
+    background-color: #f0f8ff;
   }
 }
 

@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Затемнение фона */
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,8 +29,8 @@
   background: #fff;
   min-height: 60px;
   align-items: center;
-  padding: 16px; /* Отступы внутри хедера */
-  box-sizing: border-box; /* Включаем отступы в общий размер */
+  padding: 16px;
+  box-sizing: border-box;
 
   button {
     padding: 5px 10px;
