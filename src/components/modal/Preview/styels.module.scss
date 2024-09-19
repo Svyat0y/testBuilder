@@ -1,0 +1,73 @@
+.previewModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Затемнение фона */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: .3s ease-in-out all;
+
+  &.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.previewModalHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background: #fff;
+  min-height: 60px;
+  align-items: center;
+  padding: 16px; /* Отступы внутри хедера */
+  box-sizing: border-box; /* Включаем отступы в общий размер */
+
+  button {
+    padding: 5px 10px;
+  }
+}
+
+.previewModalContent {
+  background: #fff;
+  padding: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.previewPageContent {
+  margin-bottom: 20px;
+}
+
+.responsiveNav {
+  display: flex;
+  gap: 5px;
+}
+
+.pageName {
+  font-size: 16px;
+}
+
+.pageNav {
+  margin: 0 auto;
+  max-width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  button {
+    padding: 5px 10px;
+  }
+}

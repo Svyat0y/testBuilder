@@ -1,0 +1,19 @@
+.sidebarContainer {
+  display: flex;
+  height: 100%;
+  position: relative;
+}
+
+.resizer {
+  width: 5px;
+  background-color: #ccc;
+  cursor: col-resize;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.resizer:hover {
+  background-color: #888;
+}

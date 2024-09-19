@@ -1,0 +1,48 @@
+.sidebar {
+  background-color: #ddd;
+  padding: 20px;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 10px;
+  gap: 10px;
+
+  button {
+    flex: 1;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: background-color 0.3s, border-bottom 0.3s;
+
+    &:hover {
+      background-color: #ddd;
+    }
+  }
+
+  .activeTab {
+    background-color: lightgray;
+    border-bottom: 2px solid gray;
+  }
+
+  .previewButton {
+    background: green;
+    color: white;
+
+    &:hover {
+      background-color: darkgreen;
+    }
+  }
+}
+
+.jsonEditor {
+  textarea {
+    width: 100%;
+    min-height: 500px;
+    box-sizing: border-box;
+  }
+}

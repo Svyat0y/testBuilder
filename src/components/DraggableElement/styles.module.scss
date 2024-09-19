@@ -1,0 +1,20 @@
+.draggableElement {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  transition: transform 0.2s ease;
+
+  &.hovered {
+    border: 2px dashed #3498db; /* Подсветка области, куда можно перетащить элемент */
+    background-color: #f0f8ff; /* Светло-голубой фон для выделения */
+  }
+}
+
+.dragHandle {
+  cursor: move;
+}
+
+.elementControls {
+  display: flex;
+  gap: 10px;
+}

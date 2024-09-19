@@ -1,0 +1,11 @@
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  height: 100%;
+}
