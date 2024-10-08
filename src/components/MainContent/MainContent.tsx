@@ -210,7 +210,7 @@ export const MainContent: React.FC<MainContentProps> = (
 							return null;
 						})
 					) : (
-						<p className={styles.dropZoneMessage}>Drag and drop elements here to customize this page.</p>
+						<p className={styles.dropZoneMessage}>Drag and drop elements here to customize this page</p>
 					)}
 				</div>
 			</div>
